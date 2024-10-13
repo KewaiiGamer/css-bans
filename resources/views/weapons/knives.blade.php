@@ -95,6 +95,18 @@
                                                 </div>
                                             </div>
                                         </div>
+  	                                <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="team">Select Team</label>
+                                                    <select class="form-select" id="team" name="team">
+                                                        <option value="0">Both Team</option>
+                                                        <option value="3">Counter-Terrorist</option>
+                                                        <option value="2">Terrorist</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+					</div>
                                         <div class="form-group mt-3">
                                             <label for="wear">{{ __('gloves.wear') }}</label>
                                             <input type="text" class="form-control" id="wear" name="wear" value="0">

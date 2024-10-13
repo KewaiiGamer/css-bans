@@ -53,6 +53,18 @@
                             <form id="applyMusicForm">
                                 <input type="hidden" id="steamid" name="steamid" value="{{Auth::user()->steam_id}}">
                                 <input type="hidden" id="music_id" name="music_id">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="team">Select Team</label>
+                                            <select class="form-select" id="team" name="team">
+                                                <option value="0">Both Team</option>
+                                                <option value="3">Counter-Terrorist</option>
+                                                <option value="2">Terrorist</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <button type="button" class="btn btn-primary mt-3" id="saveMusicButton">{{ __('skins.apply') }}</button>
                             </form>
                         </div>
