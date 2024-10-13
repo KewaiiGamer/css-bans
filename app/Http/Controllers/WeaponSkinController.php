@@ -130,6 +130,7 @@ class WeaponSkinController extends Controller
             'wearSelect' => 'required_without:wear|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
+            'team' => 'nullable|integer',
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -160,9 +161,11 @@ class WeaponSkinController extends Controller
              DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
+                    'weapon_team' => $validated['team'] ?? 0,
                 ],
                 [
-                    'knife' => $request->input('weapon_name'),
+                    'knife' => $request->input('weapon_name'),                                      
+                    'weapon_team' => $validated['team'] ?? 0,
                 ]
             );
         }
@@ -174,11 +177,13 @@ class WeaponSkinController extends Controller
             [
                 'steamid' => $validated['steamid'],
                 'weapon_defindex' => $validated['weapon_defindex'],
+                'weapon_team' => $validated['team'] ?? 0,
             ],
             [
                 'weapon_paint_id' => $validated['weapon_paint_id'],
                 'weapon_wear' => $wear,
                 'weapon_seed' => $validated['seed'] ?? 0,
+                'weapon_team' => $validated['team'] ?? 0,
             ]
         );
 
@@ -332,6 +337,7 @@ class WeaponSkinController extends Controller
             'wearSelect' => 'required|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
+            'team' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {
@@ -344,10 +350,12 @@ class WeaponSkinController extends Controller
             // Update or insert in wp_player_gloves table
              DB::connection('mysqlskins')->table('wp_player_gloves')->updateOrInsert(
                 [
-                    'steamid' => $validated['steamid'],
+                    'steamid' => $validated['steamid'],                    
+                    'weapon_team' => $validated['team'] ?? 0,
                 ],
                 [
-                    'weapon_defindex' => $validated['weapon_defindex'],
+                    'weapon_defindex' => $validated['weapon_defindex'],                    
+                    'weapon_team' => $validated['team'] ?? 0,
                 ]
             );
 
@@ -355,12 +363,14 @@ class WeaponSkinController extends Controller
              DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
-                    'weapon_defindex' => $validated['weapon_defindex'],
+                    'weapon_defindex' => $validated['weapon_defindex'],                  
+                    'weapon_team' => $validated['team'] ?? 0,
                 ],
                 [
                     'weapon_paint_id' => $validated['weapon_paint_id'],
                     'weapon_wear' => $validated['wearSelect'],
-                    'weapon_seed' => $validated['seed'] ?? 0,
+                    'weapon_seed' => $validated['seed'] ?? 0,                  
+                    'weapon_team' => $validated['team'] ?? 0,
                 ]
             );
 
@@ -375,14 +385,17 @@ class WeaponSkinController extends Controller
         $validated = $request->validate([
             'steamid' => 'required|string',
             'music_id' => 'required|integer',
+            'team' => 'required|integer',
         ]);
 
          DB::connection('mysqlskins')->table('wp_player_music')->updateOrInsert(
             [
-                'steamid' => $validated['steamid'],
+                'steamid' => $validated['steamid'],                  
+                'team' => $validated['team'] ?? 0,
             ],
             [
-                'music_id' => $validated['music_id'],
+                'music_id' => $validated['music_id'],                  
+                'team' => $validated['team'] ?? 0,
             ]
         );
 
@@ -460,6 +473,7 @@ class WeaponSkinController extends Controller
             'wearSelect' => 'required|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
+            'team' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {
@@ -471,22 +485,26 @@ class WeaponSkinController extends Controller
         try {
             DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
                 [
-                    'steamid' => $validated['steamid'],
+                    'steamid' => $validated['steamid'],                                      
+                    'team' => $validated['team'] ?? 0,
                 ],
                 [
-                    'knife' => $request->input('weapon_name'),
+                    'knife' => $request->input('weapon_name'),                                      
+                    'team' => $validated['team'] ?? 0,
                 ]
             );
 
             DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
-                    'weapon_defindex' => $validated['weapon_defindex'],
+                    'weapon_defindex' => $validated['weapon_defindex'],                                      
+                    'weapon_team' => $validated['team'] ?? 0,
                 ],
                 [
                     'weapon_paint_id' => $validated['weapon_paint_id'],
                     'weapon_wear' => $validated['wearSelect'],
-                    'weapon_seed' => $validated['seed'] ?? 0,
+                    'weapon_seed' => $validated['seed'] ?? 0,                                      
+                    'weapon_team' => $validated['team'] ?? 0,
                 ]
             );
 
